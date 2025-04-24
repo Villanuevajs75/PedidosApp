@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="EntregaCamion.cs" />
     <Compile Include="EntregaDron.cs" />
+    <Compile Include="EntregaFactory.cs" />
     <Compile Include="EntregaMoto.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
