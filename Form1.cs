@@ -36,26 +36,55 @@ namespace PedidosApp
         {
             try
             {
+                // Validaciones
+                if (string.IsNullOrWhiteSpace(txtCliente.Text))
+                {
+                    MessageBox.Show("Por favor ingresa el nombre del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cmbProducto.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecciona un producto.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (nudPeso.Value <= 0)
+                {
+                    MessageBox.Show("El peso debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (nudDistancia.Value <= 0)
+                {
+                    MessageBox.Show("La distancia debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Captura de datos
                 string cliente = txtCliente.Text;
                 string producto = cmbProducto.SelectedItem.ToString();
                 bool urgente = chkUrgente.Checked;
                 double peso = Convert.ToDouble(nudPeso.Value);
                 int distancia = Convert.ToInt32(nudDistancia.Value);
 
+                // Crear el pedido
                 Pedido pedido = new Pedido(cliente, producto, urgente, peso, distancia);
                 RegistroPedidos.Instancia.AgregarPedido(pedido);
 
+                // Mostrar resultado
                 MessageBox.Show(
-                $"Entrega: {pedido.MetodoEntrega.TipoEntrega()}\n" +
-                $"Costo: ${pedido.ObtenerCosto():0.00}",
-                "Resultado del Pedido",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Information
+                    $"Cliente: {cliente}\n" +
+                    $"Entrega: {pedido.MetodoEntrega.TipoEntrega()}\n" +
+                    $"Costo: ${pedido.ObtenerCosto():0.00}",
+                    "Resultado del Pedido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
                 );
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
