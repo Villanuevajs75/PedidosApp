@@ -31,7 +31,25 @@ namespace PedidosApp
             // Renombrar "TipoMetodoEntrega"
             if (dgvPedidos.Columns["TipoMetodoEntrega"] != null)
                 dgvPedidos.Columns["TipoMetodoEntrega"].HeaderText = "Tipo de Entrega";
+
+            // Cargar ComboBox con tipos de entrega
+            cmbFiltroEntrega.Items.Add("Todos");
+            cmbFiltroEntrega.Items.Add("Camión");
+            cmbFiltroEntrega.Items.Add("Dron");
+            cmbFiltroEntrega.Items.Add("Motocicleta");
+            cmbFiltroEntrega.Items.Add("Bicicleta");
+            cmbFiltroEntrega.SelectedIndex = 0; // Por defecto: Todos
+
+            // DataGridView y ocultar columna no deseada
+            dgvPedidos.AutoGenerateColumns = true;
+            dgvPedidos.DataSource = RegistroPedidos.Instancia.Pedidos;
+
+            if (dgvPedidos.Columns["MetodoEntrega"] != null)
+                dgvPedidos.Columns["MetodoEntrega"].Visible = false;
+
         }
+
+ 
 
         private void txtCliente_TextChanged(object sender, EventArgs e)
         {
@@ -103,7 +121,11 @@ namespace PedidosApp
                 dgvPedidos.DataSource = null;
                 dgvPedidos.DataSource = RegistroPedidos.Instancia.Pedidos;
 
-               
+                // ✅ OCULTAR LA COLUMNA 'MetodoEntrega' (para evitar duplicados/confusión)
+                if (dgvPedidos.Columns["MetodoEntrega"] != null)
+                    dgvPedidos.Columns["MetodoEntrega"].Visible = false;
+
+
                 //  RENOMBRAR LA COLUMNA 'TipoMetodoEntrega' A UN NOMBRE MÁS AMIGABLE
                 if (dgvPedidos.Columns["TipoMetodoEntrega"] != null)
                     dgvPedidos.Columns["TipoMetodoEntrega"].HeaderText = "Tipo de Entrega";
@@ -118,6 +140,32 @@ namespace PedidosApp
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbFiltroEntrega_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbFiltroEntrega.SelectedItem == null)
+                return; // Evita el error si aún no hay selección
+
+            string filtro = cmbFiltroEntrega.SelectedItem.ToString();
+
+            if (filtro == "Todos")
+            {
+                dgvPedidos.DataSource = null;
+                dgvPedidos.DataSource = RegistroPedidos.Instancia.Pedidos;
+            }
+            else
+            {
+                var pedidosFiltrados = RegistroPedidos.Instancia.Pedidos
+                    .Where(p => p.MetodoEntrega.TipoEntrega() == filtro)
+                    .ToList();
+
+                dgvPedidos.DataSource = null;
+                dgvPedidos.DataSource = pedidosFiltrados;
+            }
+
+            if (dgvPedidos.Columns["MetodoEntrega"] != null)
+                dgvPedidos.Columns["MetodoEntrega"].Visible = false;
         }
     }
 }
