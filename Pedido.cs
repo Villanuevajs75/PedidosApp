@@ -26,5 +26,11 @@ namespace PedidosApp
         }
 
         public double ObtenerCosto() => MetodoEntrega.CalcularCosto(Distancia);
+
+        public string TipoMetodoEntrega
+        {
+            get { return MetodoEntrega.TipoEntrega(); }
+        }
+
     }
 }

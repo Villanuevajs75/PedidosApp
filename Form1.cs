@@ -15,6 +15,22 @@ namespace PedidosApp
         public Form1()
         {
             InitializeComponent();
+            dgvPedidos.DataSource = null;
+            dgvPedidos.DataSource = RegistroPedidos.Instancia.Pedidos;
+
+            // Asignar columnas 
+            dgvPedidos.AutoGenerateColumns = true;
+
+            // Prevenir que la columna "MetodoEntrega"
+            dgvPedidos.DataSource = RegistroPedidos.Instancia.Pedidos;
+
+            // Ocultar la columna "MetodoEntrega" al iniciar, incluso si está vacía
+            if (dgvPedidos.Columns["MetodoEntrega"] != null)
+                dgvPedidos.Columns["MetodoEntrega"].Visible = false;
+
+            // Renombrar "TipoMetodoEntrega"
+            if (dgvPedidos.Columns["TipoMetodoEntrega"] != null)
+                dgvPedidos.Columns["TipoMetodoEntrega"].HeaderText = "Tipo de Entrega";
         }
 
         private void txtCliente_TextChanged(object sender, EventArgs e)
@@ -36,7 +52,7 @@ namespace PedidosApp
         {
             try
             {
-                // Validaciones
+                // VALIDACIONES
                 if (string.IsNullOrWhiteSpace(txtCliente.Text))
                 {
                     MessageBox.Show("Por favor ingresa el nombre del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -61,18 +77,18 @@ namespace PedidosApp
                     return;
                 }
 
-                // Captura de datos
+                //  CAPTURAR DATOS DEL FORMULARIO
                 string cliente = txtCliente.Text;
                 string producto = cmbProducto.SelectedItem.ToString();
                 bool urgente = chkUrgente.Checked;
                 double peso = Convert.ToDouble(nudPeso.Value);
                 int distancia = Convert.ToInt32(nudDistancia.Value);
 
-                // Crear el pedido
+                //  CREAR EL PEDIDO Y AGREGARLO AL REGISTRO
                 Pedido pedido = new Pedido(cliente, producto, urgente, peso, distancia);
                 RegistroPedidos.Instancia.AgregarPedido(pedido);
 
-                // Mostrar resultado
+                //  MOSTRAR RESULTADO EN UNA VENTANA EMERGENTE
                 MessageBox.Show(
                     $"Cliente: {cliente}\n" +
                     $"Entrega: {pedido.MetodoEntrega.TipoEntrega()}\n" +
@@ -81,11 +97,22 @@ namespace PedidosApp
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
+
+              
+                //  ACTUALIZAR EL DATAGRIDVIEW CON TODOS LOS PEDIDOS
+                dgvPedidos.DataSource = null;
+                dgvPedidos.DataSource = RegistroPedidos.Instancia.Pedidos;
+
+               
+                //  RENOMBRAR LA COLUMNA 'TipoMetodoEntrega' A UN NOMBRE MÁS AMIGABLE
+                if (dgvPedidos.Columns["TipoMetodoEntrega"] != null)
+                    dgvPedidos.Columns["TipoMetodoEntrega"].HeaderText = "Tipo de Entrega";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void label3_Click(object sender, EventArgs e)
