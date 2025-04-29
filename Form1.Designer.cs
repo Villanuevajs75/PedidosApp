@@ -44,7 +44,7 @@
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(168, 64);
+            this.txtCliente.Location = new System.Drawing.Point(135, 64);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(100, 22);
             this.txtCliente.TabIndex = 0;
@@ -57,7 +57,7 @@
             "Tecnologia",
             "Accesorio",
             "Componente"});
-            this.cmbProducto.Location = new System.Drawing.Point(168, 109);
+            this.cmbProducto.Location = new System.Drawing.Point(135, 111);
             this.cmbProducto.Name = "cmbProducto";
             this.cmbProducto.Size = new System.Drawing.Size(121, 24);
             this.cmbProducto.TabIndex = 1;
@@ -65,7 +65,7 @@
             // chkUrgente
             // 
             this.chkUrgente.AutoSize = true;
-            this.chkUrgente.Location = new System.Drawing.Point(312, 113);
+            this.chkUrgente.Location = new System.Drawing.Point(30, 248);
             this.chkUrgente.Name = "chkUrgente";
             this.chkUrgente.Size = new System.Drawing.Size(107, 20);
             this.chkUrgente.TabIndex = 2;
@@ -75,14 +75,14 @@
             // 
             // nudDistancia
             // 
-            this.nudDistancia.Location = new System.Drawing.Point(169, 206);
+            this.nudDistancia.Location = new System.Drawing.Point(135, 206);
             this.nudDistancia.Name = "nudDistancia";
             this.nudDistancia.Size = new System.Drawing.Size(120, 22);
             this.nudDistancia.TabIndex = 3;
             // 
             // btnCalcular
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(169, 251);
+            this.btnCalcular.Location = new System.Drawing.Point(160, 248);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(75, 23);
             this.btnCalcular.TabIndex = 4;
@@ -92,7 +92,7 @@
             // 
             // nudPeso
             // 
-            this.nudPeso.Location = new System.Drawing.Point(169, 159);
+            this.nudPeso.Location = new System.Drawing.Point(135, 159);
             this.nudPeso.Name = "nudPeso";
             this.nudPeso.Size = new System.Drawing.Size(120, 22);
             this.nudPeso.TabIndex = 6;
@@ -100,16 +100,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 64);
+            this.label1.Location = new System.Drawing.Point(27, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 16);
+            this.label1.Size = new System.Drawing.Size(48, 16);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Clientes";
+            this.label1.Text = "Cliente";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 108);
+            this.label2.Location = new System.Drawing.Point(27, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 16);
             this.label2.TabIndex = 8;
@@ -118,7 +118,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 159);
+            this.label3.Location = new System.Drawing.Point(27, 159);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 16);
             this.label3.TabIndex = 9;
@@ -128,7 +128,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 206);
+            this.label4.Location = new System.Drawing.Point(27, 208);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 16);
             this.label4.TabIndex = 10;

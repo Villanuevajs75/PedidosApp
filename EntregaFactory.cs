@@ -16,6 +16,8 @@ namespace PedidosApp
                 return new EntregaMoto();
             else if (tipoProducto == "componente" || peso > 10)
                 return new EntregaCamion();
+            else if (tipoProducto == "accesorio" || peso < 2 && !urgente)
+                return new EntregaBicicleta();
             else
                 return new EntregaMoto(); // por defecto
         }
