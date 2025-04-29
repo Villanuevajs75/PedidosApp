@@ -150,7 +150,7 @@
             // cmbFiltroEntrega
             // 
             this.cmbFiltroEntrega.FormattingEnabled = true;
-            this.cmbFiltroEntrega.Location = new System.Drawing.Point(293, 275);
+            this.cmbFiltroEntrega.Location = new System.Drawing.Point(442, 274);
             this.cmbFiltroEntrega.Name = "cmbFiltroEntrega";
             this.cmbFiltroEntrega.Size = new System.Drawing.Size(121, 24);
             this.cmbFiltroEntrega.TabIndex = 12;
